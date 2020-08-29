@@ -1,13 +1,14 @@
-package src
+package session
 
 import (
-	"github.com/gin-contrib/sessions"
+	"fmt"
+
 	"github.com/google/uuid"
 )
 
 // func SessionStart(c *gin.Context) {
 func SessionStart() {
-	session := session.Default(c)
+	// session := session.Default(c)
 	uuidObj, _ := uuid.NewUUID()
 
 	fmt.Println(uuidObj.String())
@@ -15,5 +16,5 @@ func SessionStart() {
 
 func SessionCheck() bool {
 
-	return
+	return true
 }

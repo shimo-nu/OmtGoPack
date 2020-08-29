@@ -1,4 +1,4 @@
-package src
+package awscog
 
 import (
 	"fmt"
@@ -21,13 +21,13 @@ type Config struct {
 	Rg  string `json:"region"`
 }
 
-func SignIn(user string, pwd string) string {
+func SignIn(user string, pwd string, config string) string {
 
 	// cognito設定ファイル読み込み
 	username := user
 	password := pwd
 	fmt.Println(username)
-	c, err := ReadConfig("/Users/shimo/.aws/CogConfig.json")
+	c, err := ReadConfig(config)
 	if err != nil {
 		fmt.Println(err.Error())
 		return ""
@@ -53,8 +53,8 @@ func SignIn(user string, pwd string) string {
 	return aws.StringValue(res.AuthenticationResult.AccessToken)
 }
 
-func SignOut(actoken string) bool {
-	c, err := ReadConfig("/Users/shimo/.aws/CogConfig.json")
+func SignOut(actoken string, config string) bool {
+	c, err := ReadConfig(config)
 	if err != nil {
 		fmt.Println(err.Error())
 		return false
